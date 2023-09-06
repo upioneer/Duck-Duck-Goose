@@ -1,4 +1,4 @@
-$firstTues = $null
+$firstTues = $null # resetting the var will allow script to be run multiple times in succession in a session when selecting/testing against different months
 
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
@@ -41,6 +41,7 @@ if ($result -eq [Windows.Forms.DialogResult]::OK) {
     Write-Host "Date selected: $($date.ToShortDateString())"
 }
 
+# loop until Tues is matched
 if ($date.DayOfWeek -eq "Tuesday") {
     $firstTues = Get-Date -Month $date.Month -Day 1
     while($firstTues.DayOfWeek -ne 'Tuesday') {
